@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE = import.meta.env.VITE_API_BASE || "https://localhost:5251"; // change port to match backend
+const API_BASE = import.meta.env.VITE_API_BASE || "https://project-manager-nx71.onrender.com/"; // change port to match backend
 
 const api = axios.create({
   baseURL: API_BASE,
