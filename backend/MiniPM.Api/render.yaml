@@ -1,19 +1,9 @@
 services:
   - type: web
-    name: minipm-api
-    env: docker
-    plan: free
-
-    # The port your app listens on — matches the Dockerfile EXPOSE
+    name: mini-pm-api
+    env: dotnet
+    buildCommand: dotnet publish -c Release -o out
+    startCommand: dotnet out/MiniPM.Api.dll
     envVars:
       - key: ASPNETCORE_URLS
-        value: http://0.0.0.0:8080
-      - key: ASPNETCORE_ENVIRONMENT
-        value: Production
-
-    # Optional: persistent volume for your SQLite database
-    # Uncomment this section if you want to persist app.db between deploys
-    # disk:
-    #   name: app_db_storage
-    #   mountPath: /app
-    #   sizeGB: 1
+        value: http://+:10000

@@ -1,24 +1,18 @@
 # Step 1: Build stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /app
+WORKDIR /src
 
-# Copy csproj and restore dependencies
-COPY *.sln .
-COPY MiniPM.API/*.csproj ./MiniPM.API/
-RUN dotnet restore MiniPM.API/MiniPM.API.csproj
-
-# Copy the rest of the files and build
+# Copy everything and restore dependencies
 COPY . .
-WORKDIR /app/MiniPM.API
-RUN dotnet publish -c Release -o /app/out
+RUN dotnet restore MiniPM.Api.csproj
+
+# Build and publish
+RUN dotnet publish MiniPM.Api.csproj -c Release -o /app/out /p:UseAppHost=false
 
 # Step 2: Runtime stage
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
-COPY --from=build /app/out ./
+COPY --from=build /app/out .
 
-# Expose the port the API runs on
 EXPOSE 8080
-
-# Start the application
-ENTRYPOINT ["dotnet", "MiniPM.API.dll"]
+ENTRYPOINT ["dotnet", "MiniPM.Api.dll"]
