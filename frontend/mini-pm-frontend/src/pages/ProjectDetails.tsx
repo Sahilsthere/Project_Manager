@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import api from "../api/api";
 import type { Task } from "../types";
 import { useParams, useNavigate } from "react-router-dom";
+import "./ProjectDetails.css"; // New CSS file
 
 const ProjectDetails: React.FC = () => {
   const { id } = useParams();
@@ -27,17 +28,27 @@ const ProjectDetails: React.FC = () => {
     }
   };
 
-  useEffect(() => { fetch(); }, [id]);
+  useEffect(() => {
+    fetch();
+  }, [id]);
 
   const addTask = async (e: React.FormEvent) => {
     e.preventDefault();
-    await api.post(`/api/projects/${id}/tasks`, { title: taskTitle, dueDate: taskDue || null });
-    setTaskTitle(""); setTaskDue("");
+    await api.post(`/api/projects/${id}/tasks`, {
+      title: taskTitle,
+      dueDate: taskDue || null,
+    });
+    setTaskTitle("");
+    setTaskDue("");
     fetch();
   };
 
   const toggle = async (t: Task) => {
-    await api.put(`/api/tasks/${t.id}`, { title: t.title, dueDate: t.dueDate, isCompleted: !t.isCompleted });
+    await api.put(`/api/tasks/${t.id}`, {
+      title: t.title,
+      dueDate: t.dueDate,
+      isCompleted: !t.isCompleted,
+    });
     fetch();
   };
 
@@ -48,20 +59,48 @@ const ProjectDetails: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: 20 }}>
-      <h2>{projectTitle}</h2>
-      <p>{projectDesc}</p>
-      <form onSubmit={addTask}>
-        <input value={taskTitle} onChange={e => setTaskTitle(e.target.value)} placeholder="Task title" required />
-        <input type="date" value={taskDue} onChange={e => setTaskDue(e.target.value)} />
-        <button type="submit">Add Task</button>
+    <div className="project-details-container">
+      <h2 className="project-title">{projectTitle}</h2>
+      <p className="project-desc">{projectDesc}</p>
+
+      <form className="task-form" onSubmit={addTask}>
+        <input
+          className="input-field"
+          value={taskTitle}
+          onChange={(e) => setTaskTitle(e.target.value)}
+          placeholder="Task title"
+          required
+        />
+        <input
+          className="input-field"
+          type="date"
+          value={taskDue}
+          onChange={(e) => setTaskDue(e.target.value)}
+        />
+        <button className="add-btn" type="submit">
+          Add Task
+        </button>
       </form>
-      <ul>
+
+      <ul className="tasks-list">
         {tasks.map((t: any) => (
-          <li key={t.id}>
-            <input type="checkbox" checked={t.isCompleted} onChange={() => toggle(t)} />
-            {t.title} {t.dueDate ? `- due ${new Date(t.dueDate).toLocaleDateString()}` : ""}
-            <button onClick={() => remove(t)}>Delete</button>
+          <li key={t.id} className="task-item">
+            <label>
+              <input
+                type="checkbox"
+                checked={t.isCompleted}
+                onChange={() => toggle(t)}
+              />
+              <span className={t.isCompleted ? "completed" : ""}>
+                {t.title}{" "}
+                {t.dueDate
+                  ? `- due ${new Date(t.dueDate).toLocaleDateString()}`
+                  : ""}
+              </span>
+            </label>
+            <button className="delete-btn" onClick={() => remove(t)}>
+              Delete
+            </button>
           </li>
         ))}
       </ul>

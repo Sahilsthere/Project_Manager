@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import api from "../api/api";
 import type { Project } from "../types";
 import { useNavigate, Link } from "react-router-dom";
+import "./Dashboard.css"; // New CSS file
 
 const Dashboard: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -22,7 +23,9 @@ const Dashboard: React.FC = () => {
     }
   };
 
-  useEffect(() => { fetchProjects(); }, []);
+  useEffect(() => {
+    fetchProjects();
+  }, []);
 
   const createProject = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,36 +35,68 @@ const Dashboard: React.FC = () => {
     }
     try {
       await api.post("/api/projects", { title, description: desc });
-      setTitle(""); setDesc("");
+      setTitle("");
+      setDesc("");
       fetchProjects();
     } catch {
-      setError("Failed to create");
+      setError("Failed to create project");
     }
   };
 
   const deleteProject = async (id: number) => {
     if (!confirm("Delete project?")) return;
     await api.delete(`/api/projects/${id}`);
-    setProjects(p => p.filter(x => x.id !== id));
+    setProjects((p) => p.filter((x) => x.id !== id));
   };
 
-  const logout = () => { localStorage.removeItem("token"); navigate("/login"); };
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
 
   return (
-    <div style={{ padding: 20 }}>
-      <h1>Projects</h1>
-      <button onClick={logout}>Logout</button>
-      <form onSubmit={createProject}>
-        <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Project title" required minLength={3} />
-        <input value={desc} onChange={e => setDesc(e.target.value)} placeholder="Description" />
-        <button type="submit">Create</button>
+    <div className="dashboard-container">
+      <header className="dashboard-header">
+        <h1>Projects</h1>
+        <button className="logout-btn" onClick={logout}>
+          Logout
+        </button>
+      </header>
+
+      <form className="project-form" onSubmit={createProject}>
+        <input
+          className="input-field"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Project title"
+          required
+          minLength={3}
+        />
+        <input
+          className="input-field"
+          value={desc}
+          onChange={(e) => setDesc(e.target.value)}
+          placeholder="Description"
+        />
+        <button className="create-btn" type="submit">
+          Create
+        </button>
       </form>
-      {error && <div style={{ color: "red" }}>{error}</div>}
-      <ul>
-        {projects.map(p => (
-          <li key={p.id}>
-            <Link to={`/projects/${p.id}`}>{p.title}</Link>
-            <button onClick={() => deleteProject(p.id)}>Delete</button>
+
+      {error && <div className="error-msg">{error}</div>}
+
+      <ul className="projects-list">
+        {projects.map((p) => (
+          <li key={p.id} className="project-item">
+            <Link className="project-link" to={`/projects/${p.id}`}>
+              {p.title}
+            </Link>
+            <button
+              className="delete-btn"
+              onClick={() => deleteProject(p.id)}
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>

@@ -165,3 +165,4 @@ C:\Users\Sahil\OneDrive\Desktop\AppsianTechAssignments\mini-project-manager\back
 C:\Users\Sahil\OneDrive\Desktop\AppsianTechAssignments\mini-project-manager\backend\MiniPM.Api\obj\Debug\net8.0\MiniPM.Api.pdb
 C:\Users\Sahil\OneDrive\Desktop\AppsianTechAssignments\mini-project-manager\backend\MiniPM.Api\obj\Debug\net8.0\MiniPM.Api.genruntimeconfig.cache
 C:\Users\Sahil\OneDrive\Desktop\AppsianTechAssignments\mini-project-manager\backend\MiniPM.Api\obj\Debug\net8.0\ref\MiniPM.Api.dll
+C:\Users\Sahil\OneDrive\Desktop\AppsianTechAssignments\mini-project-manager\backend\MiniPM.Api\obj\Debug\net8.0\MiniPM.Api.sourcelink.json
