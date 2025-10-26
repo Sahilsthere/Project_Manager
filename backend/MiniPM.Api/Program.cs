@@ -19,22 +19,17 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Auth service
 builder.Services.AddScoped<IAuthService, AuthService>();
 
-
 // CORS
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins(
-                "http://localhost:5173", // for local dev
-                "https://project-manager-6joc.vercel.app" // production frontend
-            )
-            .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials();
+        policy.WithOrigins("http://localhost:5173") // frontend URL
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
     });
 });
-
 
 // JWT authentication
 builder.Services.AddAuthentication(options =>
@@ -67,6 +62,7 @@ app.MapGet("/health", () => Results.Ok("Healthy"));
 
 app.UseHttpsRedirection();
 app.UseCors();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
