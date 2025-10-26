@@ -76,10 +76,12 @@
 
 .task-item label {
   display: flex;
+  justify-content: center; /* centers checkbox and text horizontally */
   align-items: center;
   gap: 8px;
   flex: 1;
 }
+
 
 .completed {
   text-decoration: line-through;

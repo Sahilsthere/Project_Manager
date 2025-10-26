@@ -1,15 +1,25 @@
+/* Assuming this is the parent of .auth-container */
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  width: 100%;
+  justify-content: center; /* horizontal center */
+  align-items: center;     /* vertical center */
+  background-color: #e6e6e6; /* optional */
+}
 
+/* Keep your auth-container mostly the same */
 .auth-container {
   max-width: 400px;
   padding: 30px;
-  justify-content: center;  /* horizontal center */
-  align-items: center;  
   color: #000000;
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   font-family: "Segoe UI", sans-serif;
 }
+
 
 .auth-container h2 {
   text-align: center;

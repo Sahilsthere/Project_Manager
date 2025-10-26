@@ -28,7 +28,6 @@ const LoginRegister: React.FC = () => {
   };
 
   return (
-    <div className="auth-wrapper">
       <div className="auth-container">
         <h2>{isRegister ? "Register" : "Login"}</h2>
         <form className="auth-form" onSubmit={handleSubmit}>
@@ -65,7 +64,6 @@ const LoginRegister: React.FC = () => {
           {isRegister ? "Have account? Login" : "No account? Register"}
         </button>
       </div>
-    </div>
   );
 };
 
