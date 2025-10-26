@@ -76,7 +76,7 @@
 
 .task-item label {
   display: flex;
-  justify-content: center; /* centers checkbox and text horizontally */
+  justify-content: center; 
   align-items: center;
   gap: 8px;
   flex: 1;

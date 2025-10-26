@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import api from "../api/api";
 import type { Task } from "../types";
 import { useParams, useNavigate } from "react-router-dom";
-import "./ProjectDetails.css"; // New CSS file
+import "./ProjectDetails.css"; 
 
 const ProjectDetails: React.FC = () => {
   const { id } = useParams();

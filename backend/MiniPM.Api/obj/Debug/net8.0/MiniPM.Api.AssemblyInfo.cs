@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MiniPM.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+da3889236248514db2457387baf8765abc404291")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3f26bc71c6afcc67c2d0967d35d61dcbc655dc8f")]
 [assembly: System.Reflection.AssemblyProductAttribute("MiniPM.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MiniPM.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

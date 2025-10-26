@@ -1,4 +1,3 @@
-// src/components/TaskItem.tsx
 import React from "react";
 import "./TaskItem.css";
 

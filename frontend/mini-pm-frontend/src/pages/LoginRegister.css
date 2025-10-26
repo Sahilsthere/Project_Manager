@@ -1,15 +1,13 @@
-/* Assuming this is the parent of .auth-container */
 body, html {
   height: 100%;
   margin: 0;
   display: flex;
   width: 100%;
-  justify-content: center; /* horizontal center */
-  align-items: center;     /* vertical center */
-  background-color: #e6e6e6; /* optional */
+  justify-content: center; 
+  align-items: center;     
+  background-color: #e6e6e6; 
 }
 
-/* Keep your auth-container mostly the same */
 .auth-container {
   max-width: 400px;
   padding: 30px;

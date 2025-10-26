@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import api from "../api/api";
 import type { Project } from "../types";
 import { useNavigate, Link } from "react-router-dom";
-import "./Dashboard.css"; // New CSS file
+import "./Dashboard.css"; 
 
 const Dashboard: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
